@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/reset.css"> 
+	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+</head>
+<body>
+   <style>
+    .cd-gallery li {
+        width: 90%!important;
+    }
+    </style>  
+    <main class="cd-main-content">
+
+        <div class="cd-tab-filter-wrapper">
+			<div class="cd-tab-filter">
+				<ul class="cd-filters">
+					<li class="placeholder">
+						<a data-type="all" href="#0">All</a> <!-- selected option on mobile -->
+					</li>
+					<li class="filter"><a class="selected" href="#0" data-type="all">All</a></li>
+					<li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Color 1</a></li>
+					<li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">Color 2</a></li>
+				</ul> <!-- cd-filters -->
+			</div> <!-- cd-tab-filter -->
+		</div> <!-- cd-tab-filter-wrapper -->
+
+
+
+        <section class="cd-gallery">
+            <ul>
+                <div id="appEvents">
+                    <swiper-container
+                    :slides-per-view=calculateSlides()
+                    :pagination="{
+                        type: 'bullets',
+                        clickable: 'true'
+                    }"
+                    >
+                        <swiper-slide v-if="pg" v-for="item in pg" >
+                            <li :class="'mix '+ item.color">
+                                <div class="event">
+                                    <div><img class="newsPhoto" src="https://my.mpei.ru/PublishingImages/event/event1.png"/></div>
+                                    <!--h3><a href="" v-on:click.prevent="" :onclick="url+item.ID+urlEnd">{{ item.Title }}</a></h3-->
+                                    <div>
+                                        <h3><a target="_blank" :href="item.Link">{{ item.Title }}</a></h3>
+                                    </div>
+                                    <div class="time-event">
+                                        <span>Сроки регистрации</span>
+                                        <br/>
+                                        <span class="date">{{ item.DayMonthBegin }} - {{ item.DayMonth }}</span>
+                                    </div>
+                                    <!--<divclass="members-event" >
+                                        <span>Статус: </span>
+                                        {{ item.Status }}
+                                        </div>-->
+                                    <div class="members-event" v-html="item.Description"></div>
+                                    <div class="status-event">
+                                        <span>Участники: </span>
+                                        {{ item.members }}
+                                    </div>
+                                </div>
+                            </li>
+                        </swiper-slide>
+                    </swiper-container>
+                </div>
+            </ul>
+        </section>
+    </main>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
+        
+        <script>
+        
+        new Vue({
+            el:'#appEvents',
+            data: {
+                pg:[
+    {
+        "__metadata": {
+            "id": "a12ecdf1-2dcf-4e3a-b8e9-1e6d7743c7b2",
+            "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)",
+            "etag": "\"2\"",
+            "type": "SP.Data.EventsListItem"
+        },
+        "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/FirstUniqueAncestorSecurableObject"
+            }
+        },
+        "RoleAssignments": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/RoleAssignments"
+            }
+        },
+        "AttachmentFiles": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/AttachmentFiles"
+            }
+        },
+        "ContentType": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/ContentType"
+            }
+        },
+        "GetDlpPolicyTip": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/GetDlpPolicyTip"
+            }
+        },
+        "FieldValuesAsHtml": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/FieldValuesAsHtml"
+            }
+        },
+        "FieldValuesAsText": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/FieldValuesAsText"
+            }
+        },
+        "FieldValuesForEdit": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/FieldValuesForEdit"
+            }
+        },
+        "File": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/File"
+            }
+        },
+        "Folder": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/Folder"
+            }
+        },
+        "ParentList": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/ParentList"
+            }
+        },
+        "FileSystemObjectType": 0,
+        "Id": 64,
+        "ContentTypeId": "0x0100B5AE9B3A0E4B5D4CAFBA93B0202AFEED",
+        "Title": "Лидеры цифровой трансформации",
+        "DeadlinesBegin": "2024-05-02T21:00:00Z",
+        "DeadlinesEnd": "2024-06-04T21:00:00Z",
+        "Status": null,
+        "members": "1+ курс",
+        "Img": "/PublishingImages/event/event1.png",
+        "Link": " https://bit.ly/3WhQVqj.",
+        "Description": "<p>Участвуй в самом масштабном международном конкурсе Мэра Москвы «Лидеры цифровой трансформации»!</p>\n\n<p> <b>Тебя ждет&#58;</b></p>\n\n<ul> <li> 25 задач от города, бизнеса и регионов</li>\n\n<li>50 000 000 ₽ — общий призовой фонд</li>\n\n<li>Поддержка менторов и амбассадоров</li>\n\n<li>Грандиозный финал&#58; 2-дневный фестиваль</li>\n\n<li>Возможность пилотирования проекта, в том числе и у международных партнеров</li></ul>\n\n<p>Это твой шанс стать легендой и войти в историю цифровой трансформации!</p>\n\n<p>Присоединяйся к чату ЛЦТ <a href=\"https&#58;//t.me/leaders_talk\" target=\"_blank\">(https&#58;//t.me/leaders_talk)</a> , чтобы найти себе команду и не пропустить важную информацию!</p>",
+        "DayMonth": "5 Июн",
+        "DayMonthBegin": "3 Мая",
+        "SortLevel": null,
+        "SortCourse": null,
+        "SortInst": null,
+        "SortFilters": null,
+        "DispEvent": true,
+        "ID": 64,
+        "Modified": "2024-05-03T13:47:33Z",
+        "Created": "2024-05-03T13:46:28Z",
+        "AuthorId": 5963,
+        "EditorId": 5963,
+        "color": 'color-1',
+        "OData__UIVersionString": "1.0",
+        "Attachments": false,
+        "GUID": "df3e97d6-0fd5-43ba-864a-4e254cd8df42"
+    },
+    {
+        "__metadata": {
+            "id": "a12ecdf1-2dcf-4e3a-b8e9-1e6d7743c7b2",
+            "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)",
+            "etag": "\"2\"",
+            "type": "SP.Data.EventsListItem"
+        },
+        "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/FirstUniqueAncestorSecurableObject"
+            }
+        },
+        "RoleAssignments": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/RoleAssignments"
+            }
+        },
+        "AttachmentFiles": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/AttachmentFiles"
+            }
+        },
+        "ContentType": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/ContentType"
+            }
+        },
+        "GetDlpPolicyTip": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/GetDlpPolicyTip"
+            }
+        },
+        "FieldValuesAsHtml": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/FieldValuesAsHtml"
+            }
+        },
+        "FieldValuesAsText": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/FieldValuesAsText"
+            }
+        },
+        "FieldValuesForEdit": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/FieldValuesForEdit"
+            }
+        },
+        "File": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/File"
+            }
+        },
+        "Folder": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/Folder"
+            }
+        },
+        "ParentList": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/ParentList"
+            }
+        },
+        "FileSystemObjectType": 0,
+        "Id": 64,
+        "ContentTypeId": "0x0100B5AE9B3A0E4B5D4CAFBA93B0202AFEED",
+        "Title": "Лидеры цифровой трансформации",
+        "DeadlinesBegin": "2024-05-02T21:00:00Z",
+        "DeadlinesEnd": "2024-06-04T21:00:00Z",
+        "Status": null,
+        "members": "1+ курс",
+        "Img": "/PublishingImages/event/event1.png",
+        "Link": " https://bit.ly/3WhQVqj.",
+        "Description": "<p>Участвуй в самом масштабном международном конкурсе Мэра Москвы «Лидеры цифровой трансформации»!</p>\n\n<p> <b>Тебя ждет&#58;</b></p>\n\n<ul> <li> 25 задач от города, бизнеса и регионов</li>\n\n<li>50 000 000 ₽ — общий призовой фонд</li>\n\n<li>Поддержка менторов и амбассадоров</li>\n\n<li>Грандиозный финал&#58; 2-дневный фестиваль</li>\n\n<li>Возможность пилотирования проекта, в том числе и у международных партнеров</li></ul>\n\n<p>Это твой шанс стать легендой и войти в историю цифровой трансформации!</p>\n\n<p>Присоединяйся к чату ЛЦТ <a href=\"https&#58;//t.me/leaders_talk\" target=\"_blank\">(https&#58;//t.me/leaders_talk)</a> , чтобы найти себе команду и не пропустить важную информацию!</p>",
+        "DayMonth": "5 Июн",
+        "DayMonthBegin": "3 Мая",
+        "SortLevel": null,
+        "SortCourse": null,
+        "SortInst": null,
+        "SortFilters": null,
+        "DispEvent": true,
+        "ID": 64,
+        "Modified": "2024-05-03T13:47:33Z",
+        "Created": "2024-05-03T13:46:28Z",
+        "AuthorId": 5963,
+        "EditorId": 5963,
+        "color": 'color-2',
+        "OData__UIVersionString": "1.0",
+        "Attachments": false,
+        "GUID": "df3e97d6-0fd5-43ba-864a-4e254cd8df42"
+    },
+    {
+        "__metadata": {
+            "id": "d88a3f70-c682-4bd8-a8ab-79a6ac65f993",
+            "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)",
+            "etag": "\"2\"",
+            "type": "SP.Data.EventsListItem"
+        },
+        "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)/FirstUniqueAncestorSecurableObject"
+            }
+        },
+        "RoleAssignments": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)/RoleAssignments"
+            }
+        },
+        "AttachmentFiles": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)/AttachmentFiles"
+            }
+        },
+        "ContentType": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)/ContentType"
+            }
+        },
+        "GetDlpPolicyTip": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)/GetDlpPolicyTip"
+            }
+        },
+        "FieldValuesAsHtml": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)/FieldValuesAsHtml"
+            }
+        },
+        "FieldValuesAsText": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)/FieldValuesAsText"
+            }
+        },
+        "FieldValuesForEdit": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)/FieldValuesForEdit"
+            }
+        },
+        "File": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)/File"
+            }
+        },
+        "Folder": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)/Folder"
+            }
+        },
+        "ParentList": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)/ParentList"
+            }
+        },
+        "FileSystemObjectType": 0,
+        "Id": 63,
+        "ContentTypeId": "0x0100B5AE9B3A0E4B5D4CAFBA93B0202AFEED",
+        "Title": "Учителем физики, математики или информатики в школы столицы!",
+        "DeadlinesBegin": "2024-05-02T21:00:00Z",
+        "DeadlinesEnd": "2024-08-02T21:00:00Z",
+        "Status": null,
+        "members": "4+ курс",
+        "Img": "/PublishingImages/event/event2.png",
+        "Link": "https://cznmos.ru/teacher?utm_source=vkontakte&utm_medium=cpc&utm_campaign=schoolmarges&utm_content=%7Bad_id%7D   ",
+        "Description": "<p><b>Задачи&#58;</b></p>\n\n<ul> <li>Проведение уроков</li>\n\n<li>Организация внеурочной деятельности</li>\n\n<li>Проведение кружков дополнительного образования по предмету</li>\n\n<li>Работа в системе «Московская электронная школа»</li>\n\n<li>Помощь ученикам осознать свои таланты и найти свое место в обществе</li></ul>\n\n<p><b>Преимущества работы&#58;</p></b>\n\n<ul> <li>Бесплатное дополнительное обучение и повышение квалификации</li>\n\n<li>56 дней ежегодного оплачиваемого отпуска</li>\n\n<li>Дополнительные льготы молодым специалистам</li>\n\n<li>Возможность зарабатывать больше</li>\n\n<li>Уникальная возможность быть в команде лучших учителей</li></ul>",
+        "DayMonth": "3 Авг",
+        "DayMonthBegin": "3 Мая",
+        "SortLevel": null,
+        "SortCourse": null,
+        "SortInst": null,
+        "SortFilters": null,
+        "DispEvent": true,
+        "ID": 63,
+        "Modified": "2024-05-03T13:38:13Z",
+        "Created": "2024-05-03T13:36:58Z",
+        "AuthorId": 5963,
+        "EditorId": 5963,
+        "color": 'color-2',
+        "OData__UIVersionString": "1.0",
+        "Attachments": false,
+        "GUID": "e46c7c24-684d-4a04-a63a-986013ac166b"
+    },
+    {
+        "__metadata": {
+            "id": "aca0589b-03d5-4e46-819e-64c3f2a02828",
+            "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)",
+            "etag": "\"23\"",
+            "type": "SP.Data.EventsListItem"
+        },
+        "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)/FirstUniqueAncestorSecurableObject"
+            }
+        },
+        "RoleAssignments": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)/RoleAssignments"
+            }
+        },
+        "AttachmentFiles": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)/AttachmentFiles"
+            }
+        },
+        "ContentType": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)/ContentType"
+            }
+        },
+        "GetDlpPolicyTip": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)/GetDlpPolicyTip"
+            }
+        },
+        "FieldValuesAsHtml": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)/FieldValuesAsHtml"
+            }
+        },
+        "FieldValuesAsText": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)/FieldValuesAsText"
+            }
+        },
+        "FieldValuesForEdit": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)/FieldValuesForEdit"
+            }
+        },
+        "File": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)/File"
+            }
+        },
+        "Folder": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)/Folder"
+            }
+        },
+        "ParentList": {
+            "__deferred": {
+                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)/ParentList"
+            }
+        },
+        "FileSystemObjectType": 0,
+        "Id": 33,
+        "ContentTypeId": "0x0100B5AE9B3A0E4B5D4CAFBA93B0202AFEED",
+        "Title": "Получи преимущество при трудоустройстве – добавь результат оценки компетенций на сайт hh.ru. ",
+        "DeadlinesBegin": "2024-01-10T21:00:00Z",
+        "DeadlinesEnd": "2024-12-30T21:00:00Z",
+        "Status": null,
+        "members": "4+ курс",
+        "Img": "/PublishingImages/event/event1.png",
+        "Link": "https://hh.ru/rsv_user_competencies",
+        "Description": "<p>Все молодые специалисты, прошедшие оценку универсальных компетенций на базе Центра компетенций, могут <b>подтвердить свои навыки</b> на сайте hh.ru и тем самым значительно (в несколько раз) ускорить сроки трудоустройства.</p>\n<p>Как это работает&#58;<p>\n<p>Пройди оценку в Центре компетенций <a href=\"https&#58;//softskills.rsv.ru\" target=\"_blank\">(https&#58;//softskills.rsv.ru)</a> и получи сводный отчет с результатами в личном кабинете на сайте<a href=\"https&#58;//rsv.ru/\" target=\"_blank\">rsv.ru.</a> </p><p>Войди или зарегистрируйся на сайте hh.ru и перейди<a href=\"https&#58;//hh.ru/rsv_user_competencies\" target=\"_blank\"> по ссылке</a>.</p><p>Согласись с загрузкой результатов оценки&#58; нажми «Добавить». </p><p>Войди в личный кабинет на платформе <a href=\"https&#58;//rsv.ru/\" target=\"_blank\"> «Россия – страна возможностей»</a></p>\n<p>Готово! Теперь твой результат увидят работодатели.</p>\n",
+        "DayMonth": "31 Дек",
+        "DayMonthBegin": "11 Янв",
+        "SortLevel": null,
+        "SortCourse": null,
+        "SortInst": null,
+        "SortFilters": null,
+        "DispEvent": true,
+        "ID": 33,
+        "Modified": "2024-04-05T10:06:06Z",
+        "Created": "2024-01-11T12:45:33Z",
+        "AuthorId": 15631,
+        "EditorId": 10798,
+        "color": 'color-1',
+        "OData__UIVersionString": "1.0",
+        "Attachments": false,
+        "GUID": "c239f972-e09b-4488-a49c-80dfbdd1dfea"
+    }
+],
+                filtersArr: [],
+                link: "https://mpei.ru",
+                url: "openDialog('/_layouts/15/CopyUtil.aspx?Use=id&Action=dispform&ItemId=",
+                urlEnd: "&ListId=159e10dc-4e7e-4b61-91ee-5b4dccf32024&WebId=a11676c7-bb6a-44d3-9286-ed9bd28f41a7&SiteId=23741aad-b969-4e7d-a4bd-ce704ffbec77');"
+            },
+            created:async function(){
+                    //await this.getListData('StudentFilters', false);	
+                    //await this.getListData('events', true);	
+            },
+            methods:{
+                getListData: async function(lname, isEvents){
+                var endPointUrl;
+                if (isEvents) {
+                    endPointUrl = _spPageContextInfo.siteAbsoluteUrl + "/_api/web/lists/getByTitle('"+lname+"')/items";
+                } else {
+                    endPointUrl = _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/getByTitle('"+lname+"')/items";
+                }
+                var headers = {
+                    "accept": "application/json;odata=verbose"
+                };
+                
+                var that = this;
+                $.ajax({
+                    url: endPointUrl,
+                    type: "GET",
+                    headers: headers,
+                    success: function success(data){
+                        //console.log(data.d.results);
+                        let arr = data.d.results;
+                        if (isEvents) {
+                            const currDate = Date.now();
+                            arr = arr.map(function (el) {
+                                const dateOfEl = new Date(el.DeadlinesEnd);
+                                if (dateOfEl > currDate) {
+                                    return el;
+                                }
+                            })
+                            arr = arr.filter(function( element ) {
+                                    return element !== undefined;
+                            });
+                            arr = arr.filter(function( element ) {
+                                    console.log('ELEMENT FILTERS:',element.SortLevel,element.SortCourse,element.SortInst);
+                                    console.log('FILTERS:',that.filtersArr[0].SortLevel,that.filtersArr[0].SortCourse,that.filtersArr[0].SortInst);
+                                    if (!element.DispEvent) {
+                                        if (!element.SortFilters) { // case of no additional filters
+                                            if ( 
+                                                       (element.SortLevel == that.filtersArr[0].SortLevel)
+                                                    && (element.SortCourse == that.filtersArr[0].SortCourse)
+                                                    && (element.SortInst == that.filtersArr[0].SortInst)
+                                                ) 
+                                                {
+                                                return true;
+                                            } 
+                                            else {
+                                                return false;
+                                            }
+                                        } else {
+                                            let flag = true; // flag of compliance with additional filters
+                                            let addFiltersArr = element.SortFilters.split(';');
+                                            addFiltersArr.every ( (addFilter) => {
+                                                let filter = addFilter.split(':')[0];
+                                                let filterValue = addFilter.split(':')[1];
+                                                console.log(filter,filterValue);
+                                                if (that.filtersArr[0][filter] != filterValue ) {
+                                                    flag = false;
+                                                }
+                                                console.log(that.filtersArr[0][filter]);
+                                                return flag;
+                                            })
+                                            if ( 
+                                                       (element.SortLevel == that.filtersArr[0].SortLevel)
+                                                    && (element.SortCourse == that.filtersArr[0].SortCourse)
+                                                    && (element.SortInst == that.filtersArr[0].SortInst)
+                                                    && flag
+                                                ) 
+                                                {
+                                                return true;
+                                            } 
+                                            else {
+                                                return false;
+                                            }
+                                        }
+                                    } else {
+                                        return true;
+                                    }
+                            });
+                            arr.sort(function(a,b){
+                                const adate = new Date(a.DeadlinesEnd);
+                                const bdate = new Date(b.DeadlinesEnd);
+                                if (adate > bdate) {
+                                    return 1;
+                                }
+                                if (adate < bdate) {
+                                    return -1;
+                                }
+                                return 0;
+                            })
+                        }
+                        if (isEvents) {
+                            that.pg = arr;
+                        } else {
+                            that.filtersArr = arr;
+                            console.log(that.filtersArr);
+                        }
+                    }
+                });
+                },
+                calculateSlides: function() {
+                    if ((screen.width >= 769) && (screen.width <= 1024) ) {
+                        return 2;
+                    } 
+                    if (screen.width <= 768) {
+                        return 1;
+                    } 
+                    return 3;
+                }
+            }
+            
+        })
+        </script>
+        <script src="js/modernizr.js"></script>
+        <script src="js/jquery-2.1.1.js"></script>
+        <script src="js/jquery.mixitup.min.js"></script>
+        <script src="js/main.js"></script> 
+</body>
+</html>
