@@ -1,0 +1,166 @@
+@media screen and (max-width:1199px) and (min-width:992px) {
+    html {
+        font-size: 16px;
+    }
+    .gap40 {
+        gap:15px;
+    }
+}
+@media screen and (max-width:991px) {
+    .mobile-only {
+        display: block;
+    }
+    .with-mobile-ico {
+        display: flex;
+        gap: 10px;
+    }
+    .navbar {
+        position: unset;
+    }
+    .headerWrapp {
+        position: relative;
+        background-image: unset;
+        background: rgb(41, 78, 163);
+        aspect-ratio: unset;
+    }
+    .headerTitle {
+        display: none;
+    }
+    .navbar-toggler-icon {
+        position: absolute;
+        top: 33px;
+        right: 20px;
+        width: 21px;
+        height: 16px;
+    }
+    .nav-row {
+        margin: 0px;
+        padding: 0px;
+    }
+    .headerIco {
+        max-height: 35px;
+    }
+    .headerIco > img {
+        width: 35px;
+    }
+    .headerIcoText {
+        max-width: 42px;
+    }
+    .headerIcoText > p:nth-child(1) {
+        font-size: 6px;
+        line-height: 1;
+    }
+    .headerIcoText > p:nth-child(2) {
+        font-size: 16px!important;
+        line-height: 1;
+    }
+    .mpei-logo-wrap {
+        width: 65px;
+        height: 21px;
+    }
+    .nav-link {
+        font-size: 16px;
+    }
+    .header-container {
+        margin-left: 15px!important;
+        margin-right: 0px!important;
+        padding: 0px!important;
+    }
+    ul.navbar-nav {
+        margin-top: 44px;
+    }
+    .menu-nested-col, .menu-nested-cont {
+        padding: 0!important;
+    }
+    .my-align-items-md-center {
+        align-items: center!important;
+    }
+    .publications-wrap .card {
+        min-width: 100vw;
+    }
+    .publications-wrap p {
+        width: 90%;
+    }
+    .publications-wrap p, .publications-wrap a {
+        font-size: 13px;
+    }
+    .publications-wrap {
+        overflow-x: scroll;
+    }
+    .program-col {
+        margin-left: 0px;
+        margin-top: 50px;
+    }
+    footer iframe {
+        width: 100%;
+    }  
+}
+@media screen and (max-width:768px) {
+    .hr-menu {
+        width: 95vw;height: 1px;margin: 0;border: white;background: white;opacity: 1;display: block;
+    }
+    .dn768 {
+        display: block;
+    }
+    .news-text {
+        font-size: 13px;
+    }
+    .news-text-date {
+        font-size: 10px;
+    }
+    .newsWrap {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .newsWrap .card:last-child {
+        margin-right: auto;
+    }
+    .newsWrap .w-33 {
+        width: 46.5%!important;
+    }
+    .newsWrap .card-body {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .program {
+        width: 100%;
+    }
+    .iframe-wrap iframe {
+        top: -60px; /* Подгоняем по высоте, чтобы убрать полосу */
+        height: 145%; /* Растягиваем, чтобы скрыть полосы */
+    }
+    .mt40 {
+        margin-top: 30px;
+    }
+}
+@media screen and (max-width:576px) {
+    .links-block {
+        border-radius: 0px;
+    }
+    .links-block-btn {
+        min-width: unset;
+    }
+    .photo-slider .splide__slide {
+        width: calc(50% - 10px)!important; /* Фиксированная ширина слайдов */
+        height: auto!important;
+        overflow: hidden;
+        border-radius: 8px;
+    }
+    .photo-slider .splide__slide img {
+        height: 100%;
+    }
+    .photo-slider .splide__arrow  {
+        width: 30px;
+        height: 30px;
+    }
+    .photo-slider .splide__arrow svg {
+        width: 0.7em;
+        height: 0.7em;
+    }
+    .photo-slider .splide__arrow--next {
+        right: -6em;
+    }
+    .photo-slider .splide__arrow--prev {
+        left: 1em;
+    }
+}

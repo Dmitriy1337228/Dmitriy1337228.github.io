@@ -1,571 +1,329 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/reset.css"> 
-	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title></title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" integrity="sha256-5uKiXEwbaQh9cgd2/5Vp6WmMnsUr3VZZw0a8rKnOKNU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="media.css">
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" integrity="sha256-FZsW7H2V5X9TGinSjjwYJ419Xka27I8XPDmWryGlWtw=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
-   <style>
-    .cd-gallery li {
-        width: 90%!important;
-    }
-    </style>  
-    <main class="cd-main-content">
-
-        <div class="cd-tab-filter-wrapper">
-			<div class="cd-tab-filter">
-				<ul class="cd-filters">
-					<li class="placeholder">
-						<a data-type="all" href="#0">All</a> <!-- selected option on mobile -->
-					</li>
-					<li class="filter"><a class="selected" href="#0" data-type="all">All</a></li>
-					<li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Color 1</a></li>
-					<li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">Color 2</a></li>
-				</ul> <!-- cd-filters -->
-			</div> <!-- cd-tab-filter -->
-		</div> <!-- cd-tab-filter-wrapper -->
-
-
-
-        <section class="cd-gallery">
-            <ul>
-                <div id="appEvents">
-                    <swiper-container
-                    :slides-per-view=calculateSlides()
-                    :pagination="{
-                        type: 'bullets',
-                        clickable: 'true'
-                    }"
-                    >
-                        <swiper-slide v-if="pg" v-for="item in pg" >
-                            <li :class="'mix '+ item.color">
-                                <div class="event">
-                                    <div><img class="newsPhoto" src="https://my.mpei.ru/PublishingImages/event/event1.png"/></div>
-                                    <!--h3><a href="" v-on:click.prevent="" :onclick="url+item.ID+urlEnd">{{ item.Title }}</a></h3-->
-                                    <div>
-                                        <h3><a target="_blank" :href="item.Link">{{ item.Title }}</a></h3>
-                                    </div>
-                                    <div class="time-event">
-                                        <span>Сроки регистрации</span>
-                                        <br/>
-                                        <span class="date">{{ item.DayMonthBegin }} - {{ item.DayMonth }}</span>
-                                    </div>
-                                    <!--<divclass="members-event" >
-                                        <span>Статус: </span>
-                                        {{ item.Status }}
-                                        </div>-->
-                                    <div class="members-event" v-html="item.Description"></div>
-                                    <div class="status-event">
-                                        <span>Участники: </span>
-                                        {{ item.members }}
-                                    </div>
-                                </div>
-                            </li>
-                        </swiper-slide>
-                    </swiper-container>
-                </div>
-            </ul>
-        </section>
-    </main>
-        
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
-        
-        <script>
-        
-        new Vue({
-            el:'#appEvents',
-            data: {
-                pg:[
-    {
-        "__metadata": {
-            "id": "a12ecdf1-2dcf-4e3a-b8e9-1e6d7743c7b2",
-            "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)",
-            "etag": "\"2\"",
-            "type": "SP.Data.EventsListItem"
-        },
-        "FirstUniqueAncestorSecurableObject": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/FirstUniqueAncestorSecurableObject"
-            }
-        },
-        "RoleAssignments": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/RoleAssignments"
-            }
-        },
-        "AttachmentFiles": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/AttachmentFiles"
-            }
-        },
-        "ContentType": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/ContentType"
-            }
-        },
-        "GetDlpPolicyTip": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/GetDlpPolicyTip"
-            }
-        },
-        "FieldValuesAsHtml": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/FieldValuesAsHtml"
-            }
-        },
-        "FieldValuesAsText": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/FieldValuesAsText"
-            }
-        },
-        "FieldValuesForEdit": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/FieldValuesForEdit"
-            }
-        },
-        "File": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/File"
-            }
-        },
-        "Folder": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/Folder"
-            }
-        },
-        "ParentList": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/ParentList"
-            }
-        },
-        "FileSystemObjectType": 0,
-        "Id": 64,
-        "ContentTypeId": "0x0100B5AE9B3A0E4B5D4CAFBA93B0202AFEED",
-        "Title": "Лидеры цифровой трансформации",
-        "DeadlinesBegin": "2024-05-02T21:00:00Z",
-        "DeadlinesEnd": "2024-06-04T21:00:00Z",
-        "Status": null,
-        "members": "1+ курс",
-        "Img": "/PublishingImages/event/event1.png",
-        "Link": " https://bit.ly/3WhQVqj.",
-        "Description": "<p>Участвуй в самом масштабном международном конкурсе Мэра Москвы «Лидеры цифровой трансформации»!</p>\n\n<p> <b>Тебя ждет&#58;</b></p>\n\n<ul> <li> 25 задач от города, бизнеса и регионов</li>\n\n<li>50 000 000 ₽ — общий призовой фонд</li>\n\n<li>Поддержка менторов и амбассадоров</li>\n\n<li>Грандиозный финал&#58; 2-дневный фестиваль</li>\n\n<li>Возможность пилотирования проекта, в том числе и у международных партнеров</li></ul>\n\n<p>Это твой шанс стать легендой и войти в историю цифровой трансформации!</p>\n\n<p>Присоединяйся к чату ЛЦТ <a href=\"https&#58;//t.me/leaders_talk\" target=\"_blank\">(https&#58;//t.me/leaders_talk)</a> , чтобы найти себе команду и не пропустить важную информацию!</p>",
-        "DayMonth": "5 Июн",
-        "DayMonthBegin": "3 Мая",
-        "SortLevel": null,
-        "SortCourse": null,
-        "SortInst": null,
-        "SortFilters": null,
-        "DispEvent": true,
-        "ID": 64,
-        "Modified": "2024-05-03T13:47:33Z",
-        "Created": "2024-05-03T13:46:28Z",
-        "AuthorId": 5963,
-        "EditorId": 5963,
-        "color": 'color-1',
-        "OData__UIVersionString": "1.0",
-        "Attachments": false,
-        "GUID": "df3e97d6-0fd5-43ba-864a-4e254cd8df42"
-    },
-    {
-        "__metadata": {
-            "id": "a12ecdf1-2dcf-4e3a-b8e9-1e6d7743c7b2",
-            "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)",
-            "etag": "\"2\"",
-            "type": "SP.Data.EventsListItem"
-        },
-        "FirstUniqueAncestorSecurableObject": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/FirstUniqueAncestorSecurableObject"
-            }
-        },
-        "RoleAssignments": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/RoleAssignments"
-            }
-        },
-        "AttachmentFiles": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/AttachmentFiles"
-            }
-        },
-        "ContentType": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/ContentType"
-            }
-        },
-        "GetDlpPolicyTip": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/GetDlpPolicyTip"
-            }
-        },
-        "FieldValuesAsHtml": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/FieldValuesAsHtml"
-            }
-        },
-        "FieldValuesAsText": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/FieldValuesAsText"
-            }
-        },
-        "FieldValuesForEdit": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/FieldValuesForEdit"
-            }
-        },
-        "File": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/File"
-            }
-        },
-        "Folder": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/Folder"
-            }
-        },
-        "ParentList": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(64)/ParentList"
-            }
-        },
-        "FileSystemObjectType": 0,
-        "Id": 64,
-        "ContentTypeId": "0x0100B5AE9B3A0E4B5D4CAFBA93B0202AFEED",
-        "Title": "Лидеры цифровой трансформации",
-        "DeadlinesBegin": "2024-05-02T21:00:00Z",
-        "DeadlinesEnd": "2024-06-04T21:00:00Z",
-        "Status": null,
-        "members": "1+ курс",
-        "Img": "/PublishingImages/event/event1.png",
-        "Link": " https://bit.ly/3WhQVqj.",
-        "Description": "<p>Участвуй в самом масштабном международном конкурсе Мэра Москвы «Лидеры цифровой трансформации»!</p>\n\n<p> <b>Тебя ждет&#58;</b></p>\n\n<ul> <li> 25 задач от города, бизнеса и регионов</li>\n\n<li>50 000 000 ₽ — общий призовой фонд</li>\n\n<li>Поддержка менторов и амбассадоров</li>\n\n<li>Грандиозный финал&#58; 2-дневный фестиваль</li>\n\n<li>Возможность пилотирования проекта, в том числе и у международных партнеров</li></ul>\n\n<p>Это твой шанс стать легендой и войти в историю цифровой трансформации!</p>\n\n<p>Присоединяйся к чату ЛЦТ <a href=\"https&#58;//t.me/leaders_talk\" target=\"_blank\">(https&#58;//t.me/leaders_talk)</a> , чтобы найти себе команду и не пропустить важную информацию!</p>",
-        "DayMonth": "5 Июн",
-        "DayMonthBegin": "3 Мая",
-        "SortLevel": null,
-        "SortCourse": null,
-        "SortInst": null,
-        "SortFilters": null,
-        "DispEvent": true,
-        "ID": 64,
-        "Modified": "2024-05-03T13:47:33Z",
-        "Created": "2024-05-03T13:46:28Z",
-        "AuthorId": 5963,
-        "EditorId": 5963,
-        "color": 'color-2',
-        "OData__UIVersionString": "1.0",
-        "Attachments": false,
-        "GUID": "df3e97d6-0fd5-43ba-864a-4e254cd8df42"
-    },
-    {
-        "__metadata": {
-            "id": "d88a3f70-c682-4bd8-a8ab-79a6ac65f993",
-            "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)",
-            "etag": "\"2\"",
-            "type": "SP.Data.EventsListItem"
-        },
-        "FirstUniqueAncestorSecurableObject": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)/FirstUniqueAncestorSecurableObject"
-            }
-        },
-        "RoleAssignments": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)/RoleAssignments"
-            }
-        },
-        "AttachmentFiles": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)/AttachmentFiles"
-            }
-        },
-        "ContentType": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)/ContentType"
-            }
-        },
-        "GetDlpPolicyTip": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)/GetDlpPolicyTip"
-            }
-        },
-        "FieldValuesAsHtml": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)/FieldValuesAsHtml"
-            }
-        },
-        "FieldValuesAsText": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)/FieldValuesAsText"
-            }
-        },
-        "FieldValuesForEdit": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)/FieldValuesForEdit"
-            }
-        },
-        "File": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)/File"
-            }
-        },
-        "Folder": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)/Folder"
-            }
-        },
-        "ParentList": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(63)/ParentList"
-            }
-        },
-        "FileSystemObjectType": 0,
-        "Id": 63,
-        "ContentTypeId": "0x0100B5AE9B3A0E4B5D4CAFBA93B0202AFEED",
-        "Title": "Учителем физики, математики или информатики в школы столицы!",
-        "DeadlinesBegin": "2024-05-02T21:00:00Z",
-        "DeadlinesEnd": "2024-08-02T21:00:00Z",
-        "Status": null,
-        "members": "4+ курс",
-        "Img": "/PublishingImages/event/event2.png",
-        "Link": "https://cznmos.ru/teacher?utm_source=vkontakte&utm_medium=cpc&utm_campaign=schoolmarges&utm_content=%7Bad_id%7D   ",
-        "Description": "<p><b>Задачи&#58;</b></p>\n\n<ul> <li>Проведение уроков</li>\n\n<li>Организация внеурочной деятельности</li>\n\n<li>Проведение кружков дополнительного образования по предмету</li>\n\n<li>Работа в системе «Московская электронная школа»</li>\n\n<li>Помощь ученикам осознать свои таланты и найти свое место в обществе</li></ul>\n\n<p><b>Преимущества работы&#58;</p></b>\n\n<ul> <li>Бесплатное дополнительное обучение и повышение квалификации</li>\n\n<li>56 дней ежегодного оплачиваемого отпуска</li>\n\n<li>Дополнительные льготы молодым специалистам</li>\n\n<li>Возможность зарабатывать больше</li>\n\n<li>Уникальная возможность быть в команде лучших учителей</li></ul>",
-        "DayMonth": "3 Авг",
-        "DayMonthBegin": "3 Мая",
-        "SortLevel": null,
-        "SortCourse": null,
-        "SortInst": null,
-        "SortFilters": null,
-        "DispEvent": true,
-        "ID": 63,
-        "Modified": "2024-05-03T13:38:13Z",
-        "Created": "2024-05-03T13:36:58Z",
-        "AuthorId": 5963,
-        "EditorId": 5963,
-        "color": 'color-2',
-        "OData__UIVersionString": "1.0",
-        "Attachments": false,
-        "GUID": "e46c7c24-684d-4a04-a63a-986013ac166b"
-    },
-    {
-        "__metadata": {
-            "id": "aca0589b-03d5-4e46-819e-64c3f2a02828",
-            "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)",
-            "etag": "\"23\"",
-            "type": "SP.Data.EventsListItem"
-        },
-        "FirstUniqueAncestorSecurableObject": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)/FirstUniqueAncestorSecurableObject"
-            }
-        },
-        "RoleAssignments": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)/RoleAssignments"
-            }
-        },
-        "AttachmentFiles": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)/AttachmentFiles"
-            }
-        },
-        "ContentType": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)/ContentType"
-            }
-        },
-        "GetDlpPolicyTip": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)/GetDlpPolicyTip"
-            }
-        },
-        "FieldValuesAsHtml": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)/FieldValuesAsHtml"
-            }
-        },
-        "FieldValuesAsText": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)/FieldValuesAsText"
-            }
-        },
-        "FieldValuesForEdit": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)/FieldValuesForEdit"
-            }
-        },
-        "File": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)/File"
-            }
-        },
-        "Folder": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)/Folder"
-            }
-        },
-        "ParentList": {
-            "__deferred": {
-                "uri": "https://my.mpei.ru/_api/Web/Lists(guid'3d98a94b-8fa1-4e7b-bc66-751365f9b8fe')/Items(33)/ParentList"
-            }
-        },
-        "FileSystemObjectType": 0,
-        "Id": 33,
-        "ContentTypeId": "0x0100B5AE9B3A0E4B5D4CAFBA93B0202AFEED",
-        "Title": "Получи преимущество при трудоустройстве – добавь результат оценки компетенций на сайт hh.ru. ",
-        "DeadlinesBegin": "2024-01-10T21:00:00Z",
-        "DeadlinesEnd": "2024-12-30T21:00:00Z",
-        "Status": null,
-        "members": "4+ курс",
-        "Img": "/PublishingImages/event/event1.png",
-        "Link": "https://hh.ru/rsv_user_competencies",
-        "Description": "<p>Все молодые специалисты, прошедшие оценку универсальных компетенций на базе Центра компетенций, могут <b>подтвердить свои навыки</b> на сайте hh.ru и тем самым значительно (в несколько раз) ускорить сроки трудоустройства.</p>\n<p>Как это работает&#58;<p>\n<p>Пройди оценку в Центре компетенций <a href=\"https&#58;//softskills.rsv.ru\" target=\"_blank\">(https&#58;//softskills.rsv.ru)</a> и получи сводный отчет с результатами в личном кабинете на сайте<a href=\"https&#58;//rsv.ru/\" target=\"_blank\">rsv.ru.</a> </p><p>Войди или зарегистрируйся на сайте hh.ru и перейди<a href=\"https&#58;//hh.ru/rsv_user_competencies\" target=\"_blank\"> по ссылке</a>.</p><p>Согласись с загрузкой результатов оценки&#58; нажми «Добавить». </p><p>Войди в личный кабинет на платформе <a href=\"https&#58;//rsv.ru/\" target=\"_blank\"> «Россия – страна возможностей»</a></p>\n<p>Готово! Теперь твой результат увидят работодатели.</p>\n",
-        "DayMonth": "31 Дек",
-        "DayMonthBegin": "11 Янв",
-        "SortLevel": null,
-        "SortCourse": null,
-        "SortInst": null,
-        "SortFilters": null,
-        "DispEvent": true,
-        "ID": 33,
-        "Modified": "2024-04-05T10:06:06Z",
-        "Created": "2024-01-11T12:45:33Z",
-        "AuthorId": 15631,
-        "EditorId": 10798,
-        "color": 'color-1',
-        "OData__UIVersionString": "1.0",
-        "Attachments": false,
-        "GUID": "c239f972-e09b-4488-a49c-80dfbdd1dfea"
-    }
-],
-                filtersArr: [],
-                link: "https://mpei.ru",
-                url: "openDialog('/_layouts/15/CopyUtil.aspx?Use=id&Action=dispform&ItemId=",
-                urlEnd: "&ListId=159e10dc-4e7e-4b61-91ee-5b4dccf32024&WebId=a11676c7-bb6a-44d3-9286-ed9bd28f41a7&SiteId=23741aad-b969-4e7d-a4bd-ce704ffbec77');"
+    <script>
+        window.addEventListener('load',function () {
+          new Splide("#splide", {
+            type: "slide",
+            focus: 0,
+            gap: "20px", // Отступы между слайдами
+            drag: "free", // Свободная прокрутка
+            snap: false, // Отключает привязку к слайдам
+            arrows: true, // Включаем стрелки
+            pagination: false, // Выключаем пагинацию
+            perPage: 3, // Количество слайдов по умолчанию
+            breakpoints: {
+              576: {
+                perPage: 2, // Показывать 2 слайда на экранах 576px и меньше
+              },
             },
-            created:async function(){
-                    //await this.getListData('StudentFilters', false);	
-                    //await this.getListData('events', true);	
-            },
-            methods:{
-                getListData: async function(lname, isEvents){
-                var endPointUrl;
-                if (isEvents) {
-                    endPointUrl = _spPageContextInfo.siteAbsoluteUrl + "/_api/web/lists/getByTitle('"+lname+"')/items";
-                } else {
-                    endPointUrl = _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/getByTitle('"+lname+"')/items";
-                }
-                var headers = {
-                    "accept": "application/json;odata=verbose"
-                };
-                
-                var that = this;
-                $.ajax({
-                    url: endPointUrl,
-                    type: "GET",
-                    headers: headers,
-                    success: function success(data){
-                        //console.log(data.d.results);
-                        let arr = data.d.results;
-                        if (isEvents) {
-                            const currDate = Date.now();
-                            arr = arr.map(function (el) {
-                                const dateOfEl = new Date(el.DeadlinesEnd);
-                                if (dateOfEl > currDate) {
-                                    return el;
-                                }
-                            })
-                            arr = arr.filter(function( element ) {
-                                    return element !== undefined;
-                            });
-                            arr = arr.filter(function( element ) {
-                                    console.log('ELEMENT FILTERS:',element.SortLevel,element.SortCourse,element.SortInst);
-                                    console.log('FILTERS:',that.filtersArr[0].SortLevel,that.filtersArr[0].SortCourse,that.filtersArr[0].SortInst);
-                                    if (!element.DispEvent) {
-                                        if (!element.SortFilters) { // case of no additional filters
-                                            if ( 
-                                                       (element.SortLevel == that.filtersArr[0].SortLevel)
-                                                    && (element.SortCourse == that.filtersArr[0].SortCourse)
-                                                    && (element.SortInst == that.filtersArr[0].SortInst)
-                                                ) 
-                                                {
-                                                return true;
-                                            } 
-                                            else {
-                                                return false;
-                                            }
-                                        } else {
-                                            let flag = true; // flag of compliance with additional filters
-                                            let addFiltersArr = element.SortFilters.split(';');
-                                            addFiltersArr.every ( (addFilter) => {
-                                                let filter = addFilter.split(':')[0];
-                                                let filterValue = addFilter.split(':')[1];
-                                                console.log(filter,filterValue);
-                                                if (that.filtersArr[0][filter] != filterValue ) {
-                                                    flag = false;
-                                                }
-                                                console.log(that.filtersArr[0][filter]);
-                                                return flag;
-                                            })
-                                            if ( 
-                                                       (element.SortLevel == that.filtersArr[0].SortLevel)
-                                                    && (element.SortCourse == that.filtersArr[0].SortCourse)
-                                                    && (element.SortInst == that.filtersArr[0].SortInst)
-                                                    && flag
-                                                ) 
-                                                {
-                                                return true;
-                                            } 
-                                            else {
-                                                return false;
-                                            }
-                                        }
-                                    } else {
-                                        return true;
-                                    }
-                            });
-                            arr.sort(function(a,b){
-                                const adate = new Date(a.DeadlinesEnd);
-                                const bdate = new Date(b.DeadlinesEnd);
-                                if (adate > bdate) {
-                                    return 1;
-                                }
-                                if (adate < bdate) {
-                                    return -1;
-                                }
-                                return 0;
-                            })
-                        }
-                        if (isEvents) {
-                            that.pg = arr;
-                        } else {
-                            that.filtersArr = arr;
-                            console.log(that.filtersArr);
-                        }
-                    }
-                });
-                },
-                calculateSlides: function() {
-                    if ((screen.width >= 769) && (screen.width <= 1024) ) {
-                        return 2;
-                    } 
-                    if (screen.width <= 768) {
-                        return 1;
-                    } 
-                    return 3;
-                }
-            }
-            
+          }).mount();
         })
-        </script>
-        <script src="js/modernizr.js"></script>
-        <script src="js/jquery-2.1.1.js"></script>
-        <script src="js/jquery.mixitup.min.js"></script>
-        <script src="js/main.js"></script> 
+    </script>
+    <header class="headerWrapp">
+        <div class="container header-container">
+            <div class="row">
+                <div class="col d-flex gap-lg-5 gap-3 pt-4 my-align-items-md-center">
+                    <div class="d-flex flex-row headerIco">
+                        <img src="/assets/ico.svg" alt="">
+                        <div class="headerIcoText">
+                            <p class="mb-0 fw-bold text-white text-end">НИУ "МЭИ" КАФЕДРА</p>
+                            <p class="mb-0 fs-2 lh-1 fw-bold text-white text-end">ЭЭС</p>
+                        </div>
+                    </div>
+                    <div class="headerTitle">
+                        <h1 class="fs-2 text-white fw-bold">КАФЕДРА ЭЛЕКТРОЭНЕРГЕТИЧЕСКИХ СИСТЕМ НИУ «МЭИ»</h1>
+                    </div>
+                    <div class="ms-lg-auto ms-0 d-flex items-center mpei-logo-wrap">
+                        <img class="img-fluid" src="/assets/mpei.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="row nav-row">
+                <div class="col menu-nested-col">
+                    <nav class="navbar navbar-expand-lg p-0">
+                        <div class="container-fluid menu-nested-cont">
+                          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                          </button>
+                          <div class="collapse navbar-collapse justify-content-center" id="navbarTogglerDemo02">
+                            <ul class="navbar-nav mb-2 gap40 mb-lg-0">
+                              <li class="nav-item">
+                                <a class="nav-link text-white p-0" aria-current="page" href="#">Студентам</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link text-white p-0" href="#">Заочное обучение</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link text-white p-0" href="#">Мероприятия</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link text-white p-0" href="#">О кафедре</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link text-white p-0" href="#">Преподователи кафедры</a>
+                              </li>
+                              <li class="nav-item dn768">
+                                <hr class="hr-menu">
+                              </li>
+                              <li class="nav-item with-mobile-ico">
+                                <img style="transform: translateY(-2px);" class="mobile-only" src="/assets/phone-ico.svg">
+                                <a class="nav-link text-white p-0" href="#">Контакты</a>
+                              </li>
+                              <li class="nav-item mobile-only with-mobile-ico">
+                                <img src="/assets/view-alt-ico.svg">
+                                <a class="nav-link text-white p-0" href="#">Версия для слабовидящих</a>
+                              </li>
+                          </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+      <div class="row  mt-3-75rem">
+        <div class="col">
+          <h3 class="my-text-gray fw-bold">Новости</h3>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="newsWrap col d-flex gap-md-4 gap-3">
+          <div class="card w-33" style="border:unset;">
+            <div class="img-card-wrap">
+              <img src="/assets/news1.jpg" class="img-fluid">
+            </div>
+            <div class="card-body p-0 pt-3">
+              <a class="news-text my-text-blue fw-medium" href="">Команда студентов МЭИ под руководством ассистента кафедры ЭЭС завоевала первое место на всероссийской олимпиаде по электроэнергетике в Иваново</a>
+              <p class="mb-0 my-gray-light news-text-date text-md-end text-left">17.05.2024</p>
+            </div>
+          </div>
+          <div class="card w-33" style="border:unset;">
+            <div class="img-card-wrap">
+              <img src="/assets/news1.jpg" class="img-fluid">
+            </div>
+            <div class="card-body p-0 pt-3">
+              <a class="news-text my-text-blue fw-medium" href="">Команда студентов МЭИ под руководством ассистента кафедры ЭЭС завоевала первое место на всероссийской олимпиаде по электроэнергетике в Иваново</a>
+              <p class="mb-0 my-gray-light news-text-date text-md-end text-left">17.05.2024</p>
+            </div>
+          </div>
+          <div class="card w-33" style="border:unset;">
+            <div class="img-card-wrap">
+              <img src="/assets/news1.jpg" class="img-fluid">
+            </div>
+            <div class="card-body p-0 pt-3">
+              <a class="news-text my-text-blue fw-medium" href="">Команда студентов МЭИ под руководством ассистента кафедры ЭЭС завоевала первое место на всероссийской олимпиаде по электроэнергетике в Иваново</a>
+              <p class="mb-0 my-gray-light news-text-date text-md-end text-left">17.05.2024</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col">
+          <p class="more-news-btn my-gray-84">Больше новостей</p>
+          <hr class="w-100 mt-1-25rem mb-0" style="border: 1px solid rgb(195, 227, 255);"/>
+        </div>
+      </div>
+      <div class="row mt-5 links-block">
+        <p class="fs-3 mb-xl-0 mb-3 fw-bold text-white mt-4 ms-xl-4 ms-0">
+          Полезные ссылки
+        </p>
+        <div class="d-flex gap-xl-5 gap-3 mx-auto flex-column flex-xl-row justify-content-center mb-4">
+          <div class="links-block-btn d-flex align-items-center justify-content-center pt-3 pb-3 ps-2 pe-3">
+            <p class="text-white mb-0">
+              Кураторы групп 1 курса
+            </p>
+          </div>
+            <div class="links-block-btn d-flex align-items-center justify-content-center pt-3 pb-3 ps-2 pe-3">
+              <p class="text-white mb-0">
+                Тематики ВКР 2024
+            </p>
+          </div>
+            <div class="links-block-btn d-flex align-items-center justify-content-center pt-3 pb-3 ps-2 pe-3">
+              <p class="text-white mb-0">
+                Тематики ВКР 2025
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col">
+          <h3 class="my-text-gray fw-bold">Фото и видеогалерея</h3>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col photo-slider">
+          <div class="slider-wrapper">
+            <div id="splide" class="splide">
+              <div class="splide__track">
+                <ul class="splide__list">
+                  <li class="splide__slide">
+                    <img class="img-fluid" src="/assets/slide.jpg" alt="">
+                  </li>
+                  <li class="splide__slide">
+                    <img class="img-fluid" src="/assets/slide.jpg" alt="">
+                  </li>
+                  <li class="splide__slide">
+                    <img class="img-fluid" src="/assets/slide.jpg" alt="">
+                  </li>
+                  <li class="splide__slide">
+                    <img class="img-fluid" src="/assets/slide.jpg" alt="">
+                  </li>
+                </ul>
+              </div>
+              <div class="splide__arrows">
+                <button class="splide__arrow splide__arrow--next">
+                  <svg width="11.498047" height="19.982849" viewBox="0 0 11.498 19.9828" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <defs/>
+                    <path id="Стрелка 1" d="M0.44 2.56L7.87 9.99L0.44 17.41C-0.15 18.01 -0.15 18.94 0.44 19.53C1.03 20.13 1.97 20.13 2.56 19.53L11.05 11.05C11.64 10.45 11.64 9.52 11.05 8.93L2.56 0.44C1.97 -0.15 1.03 -0.15 0.44 0.44C-0.15 1.03 -0.15 1.97 0.44 2.56Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="evenodd"/>
+                  </svg>                
+                </button>
+                <button class="splide__arrow splide__arrow--prev">
+                  <svg width="11.498047" height="19.982849" viewBox="0 0 11.498 19.9828" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <defs/>
+                    <path id="Стрелка 1" d="M3.62 9.99L11.05 2.56C11.64 1.97 11.64 1.03 11.05 0.44C10.45 -0.15 9.52 -0.15 8.93 0.44L0.44 8.93C-0.15 9.52 -0.15 10.45 0.44 11.05L8.93 19.53C9.52 20.13 10.45 20.13 11.05 19.53C11.64 18.94 11.64 18.01 11.05 17.41L3.62 9.99Z" fill="#F6F7F8" fill-opacity="1.000000" fill-rule="nonzero"/>
+                    <path id="Стрелка 1" d="M11.05 2.56L3.62 9.99L11.05 17.41C11.64 18.01 11.64 18.94 11.05 19.53C10.45 20.13 9.52 20.13 8.93 19.53L0.44 11.05C-0.15 10.45 -0.15 9.52 0.44 8.93L8.93 0.44C9.52 -0.15 10.45 -0.15 11.05 0.44C11.64 1.03 11.64 1.97 11.05 2.56Z" fill="#989899" fill-opacity="1.000000" fill-rule="evenodd"/>
+                  </svg>            
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5-5rem">
+        <div class="col">
+          <p class="more-news-btn my-gray-84">Подробнее</p>
+          <hr class="w-100 mt-1-25rem mb-0" style="border: 1px solid rgb(195, 227, 255);"/>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col">
+          <h3 class="my-text-gray fw-bold mb40">Публикации кафедры</h3>
+          <div class="d-flex flex-lg-column flex-row gap-3 publications-wrap">
+            <div class="card" style="border:unset;">
+              <div class="row flex-row">
+                <div class="col-4">
+                  <img src="/assets/publication.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="col-8 d-flex flex-column">
+                  <p style="line-height: 26px;" class="mb-sm-0 mt-sm-3 my-gray-60 fw-medium">Организация строительства объектов электроэнергетики. С.Н. Тюменцев, Р.Р. Насыров. - 2-е изд., доп. и перераб.  Издательство «МЭИ», 2023. </p>
+                  <a class="publication-more-btn text-white mt-auto">Подробнее</a>
+                </div>
+              </div>
+            </div>
+            <div class="card" style="border:unset;">
+              <div class="row flex-row">
+                <div class="col-4">
+                  <img src="/assets/publication.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="col-8 d-flex flex-column">
+                  <p style="line-height: 26px;" class="mb-sm-0 mt-sm-3 my-gray-60 fw-medium">Организация строительства объектов электроэнергетики. С.Н. Тюменцев, Р.Р. Насыров. - 2-е изд., доп. и перераб.  Издательство «МЭИ», 2023. </p>
+                  <a class="publication-more-btn text-white mt-auto">Подробнее</a>
+                </div>
+              </div>
+            </div>
+            <div class="card" style="border:unset;">
+              <div class="row flex-row">
+                <div class="col-4">
+                  <img src="/assets/publication.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="col-8 d-flex flex-column">
+                  <p style="line-height: 26px;" class="mb-sm-0 mt-sm-3 my-gray-60 fw-medium">Организация строительства объектов электроэнергетики. С.Н. Тюменцев, Р.Р. Насыров. - 2-е изд., доп. и перераб.  Издательство «МЭИ», 2023. </p>
+                  <a class="publication-more-btn text-white mt-auto">Подробнее</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="w-100 mt40 d-lg-none d-block">
+            <p class="more-news-btn my-gray-84">Все публикации</p>
+            <hr class="w-100 mt-1-25rem mb-0" style="border: 1px solid rgb(195, 227, 255);"/>
+          </div>
+        </div>
+        <div class="col program-col">
+          <h3 class="my-text-gray fw-bold mb40">Образовательные программы</h3>
+          <div class="d-flex flex-column gap-3">
+            <div class="program">
+              <div class="iframe-wrap embed-responsive embed-responsive-16by9">
+                <iframe width="441" height="317" src="https://www.youtube.com/embed/qWTLSI2aFP8?si=m4H_PWSgEIJ2hm3d&modestbranding=1&iv_load_policy=3&rel=0&showinfo=0&controls=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+              <p style="line-height: 26px;" class="my-text-blue mb-0 mt-3">
+                Электроэнергетические системы и сети, их режимы, устойчивость, надежность и качество электрической энергии
+              </p>
+            </div>
+            <div class="program">
+              <div class="iframe-wrap embed-responsive embed-responsive-16by9">
+                <iframe width="441" height="317" src="https://www.youtube.com/embed/qWTLSI2aFP8?si=m4H_PWSgEIJ2hm3d&modestbranding=1&iv_load_policy=3&rel=0&showinfo=0&controls=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+              <p style="line-height: 26px;" class="my-text-blue mb-0 mt-3">
+                Электроэнергетические системы и сети, их режимы, устойчивость, надежность и качество электрической энергии
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt40">
+        <div class="col d-lg-block d-none">
+          <div class="w-100">
+            <p class="more-news-btn my-gray-84">Все публикации</p>
+            <hr class="w-100 mt-1-25rem mb-0" style="border: 1px solid rgb(195, 227, 255);"/>
+          </div>
+        </div>
+        <div class="col">
+          <div class="w-100">
+            <p class="more-news-btn my-gray-84">Все программы</p>
+            <hr class="w-100 mt-1-25rem mb-0" style="border: 1px solid rgb(195, 227, 255);"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <p class="fs-3 mb-0 fw-bold text-white mt-3rem">
+              Контактная информация
+            </p>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-lg-5 col-12">
+            <div style="position:relative;overflow:hidden;border-radius: 9px;max-height: 366px;"><a href="https://yandex.ru/maps/org/moskovskiy_energeticheskiy_institut/1081818069/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Московский энергетический институт</a><a href="https://yandex.ru/maps/213/moscow/category/university/184106140/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">ВУЗ в Москве</a><iframe src="https://yandex.ru/map-widget/v1/?ll=37.707809%2C55.754178&mode=poi&poi%5Bpoint%5D=37.708752%2C55.755376&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D1081818069&z=17.72" width="533" height="366" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
+          </div>
+          <div class="col-lg-4 col-12 mt-lg-0 mt-5">
+            <div class="d-flex justify-content-between flex-column h-100 gap-lg-0 gap-3">
+              <div class="d-flex flex-column gap-lg-4 gap-2">
+                <p class="text-white mb-0 fw-bold">Адрес: Красноказарменная, д. 17, ауд. Д-200
+                  Москва 111250 Россия</p>
+                <p class="text-white mb-0 fw-bold">Телефон: +7 495 362 70 12</p>
+                <p class="text-white mb-0 fw-bold">Электронная почта: ees@mpei.ru</p>
+              </div>
+              <div class="d-flex flex-row gap-5 mt-lg-0 mt-3">
+                <div class="d-flex flex-row footerIco ms-lg-3 ms-0">
+                  <img src="/assets/ico.svg" alt="">
+                  <div class="footerIcoText">
+                      <p class="mb-0 fw-bold text-white text-end">НИУ "МЭИ" КАФЕДРА</p>
+                      <p class="mb-0 fs-2 lh-1 fw-bold text-white text-end">ЭЭС</p>
+                  </div>
+                </div>
+                <div class="ms-0 d-flex items-center">
+                    <img class="img-fluid" src="/assets/mpei.svg" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>  
 </body>
 </html>
