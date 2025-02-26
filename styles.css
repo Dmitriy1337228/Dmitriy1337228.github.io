@@ -135,6 +135,9 @@ a {
     max-height: 72px;
     transition: background-color 0.3s ease-in-out;
 }
+.publications-wrap::-webkit-scrollbar { 
+    display: none;  
+}
 .links-block-btn:hover, .publication-more-btn:hover {
     cursor: pointer;
     background-color: rgb(113, 146, 204);
