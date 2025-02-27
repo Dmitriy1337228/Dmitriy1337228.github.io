@@ -138,9 +138,20 @@ a {
 .publications-wrap::-webkit-scrollbar { 
     display: none;  
 }
-.links-block-btn:hover, .publication-more-btn:hover {
+.links-block-btn:hover {
     cursor: pointer;
-    background-color: rgb(113, 146, 204);
+    background-color: rgb(255, 255, 255);
+}
+.links-block-btn:hover p {
+    color: rgb(9, 78, 136)!important;
+    font-weight: 600;
+}
+.publication-more-btn:hover {
+    cursor: pointer;
+    background-color: rgb(43, 130, 205);
+}
+.more-news-btn:hover {
+    color: rgb(9, 78, 136);
 }
 .photo-slider .slider-wrapper {
     width: 100%; /* Растягиваем слайдер на всю ширину родителя */
@@ -196,9 +207,6 @@ a {
     border-radius: 10px;
     transition: background-color 0.3s ease-in-out;
 }
-.embed-responsive.embed-responsive-16by9 iframe {
-    clip-path: inset(1px 1px);
-}
 .iframe-wrap {
     width: 100%;
     aspect-ratio: 4/3;
@@ -208,10 +216,9 @@ a {
 }
 .iframe-wrap iframe {
     position: absolute;
-    top: -56px; /* Подгоняем по высоте, чтобы убрать полосу */
     left: 0;
-    width: 100%;
-    height: 135%; /* Растягиваем, чтобы скрыть полосы */
+    width: 120%;
+    height: 100%; 
     border-radius: 9px;
 }
 .program {
