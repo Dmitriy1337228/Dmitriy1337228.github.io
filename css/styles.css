@@ -150,6 +150,12 @@ a {
     cursor: pointer;
     background-color: rgb(43, 130, 205);
 }
+.more-news-btn + hr {
+    transition: border 0.3s ease-in-out;
+}
+.more-news-btn:hover + hr {
+    border: 1px solid rgb(47, 131, 203)!important;
+}
 .more-news-btn:hover {
     color: rgb(9, 78, 136);
 }
@@ -209,7 +215,7 @@ a {
 }
 .iframe-wrap {
     width: 100%;
-    aspect-ratio: 4/3;
+    aspect-ratio: 1.72/1;
     overflow: hidden;
     position: relative;
     border-radius: 9px;
@@ -222,7 +228,7 @@ a {
     border-radius: 9px;
 }
 .program {
-    width: 70%;
+    width: 93%;
 }
 .program-col {
     margin-left: 100px;
